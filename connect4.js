@@ -19,9 +19,9 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  for (let rowIndex=0; rowIndex<HEIGHT; rowIndex++) {
+  for (let rowIndex = 0; rowIndex < HEIGHT; rowIndex++) {
     const thisRow = [];
-    for (let colIndex=0; colIndex<WIDTH; colIndex++) {
+    for (let colIndex = 0; colIndex < WIDTH; colIndex++) {
       thisRow.push(null);
     }
     board.push(thisRow);
@@ -33,14 +33,14 @@ function makeBoard() {
 function makeHtmlBoard() {
   const htmlBoard = document.getElementById('board');
 
-  // TODO: add comment for this code
+  // create a row for column dropping button
   const top = document.createElement("tr");
   top.setAttribute("id", "column-top");
 
-  // TODO: add comment for this code
-  for (let x = 0; x < WIDTH; x++) {
+  //complete setting up the dropping button and append it to the game board table
+  for (let colIndex = 0; colIndex < WIDTH; colIndex++) {
     const headCell = document.createElement("td");
-    headCell.setAttribute("id", `top-${x}`);
+    headCell.setAttribute("id", `top-${colIndex}`);
     headCell.addEventListener("click", handleClick);
     top.append(headCell);
   }
@@ -49,20 +49,18 @@ function makeHtmlBoard() {
   // dynamically creates the main part of html board
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
-  for (let y = 0; y < HEIGHT; y++) {
-    // TODO: Create a table row element and assign to a "row" variable
+  for (let rowIndex = 0; rowIndex < HEIGHT; rowIndex++) {
 
-    for (let x = 0; x < WIDTH; x++) {
-      // TODO: Create a table cell element and assign to a "cell" variable
+    const row = document.createElement("tr");
 
-      // TODO: add an id, c-y-x, to the above table cell element
-      // you'll use this later, so make sure you use c-y-x
+    for (let colIndex = 0; colIndex < WIDTH; colIndex++) {
+      const cell = document.createElement('td');
 
-      // TODO: append the table cell to the table row
+      cell.setAttribute("id", `c-${rowIndex}-${colIndex}`);
 
+      row.append(cell);
     }
-    // TODO: append the row to the html board
-
+    htmlBoard.append(row);
   }
 }
 
@@ -153,4 +151,4 @@ function checkForWin() {
 }
 
 makeBoard();
-makeHtmlBoard();
+makeHtmlBoard();;
