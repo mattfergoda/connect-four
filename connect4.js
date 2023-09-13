@@ -18,12 +18,12 @@ const board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
   for (let rowIndex = 0; rowIndex < HEIGHT; rowIndex++) {
     const thisRow = [];
     for (let colIndex = 0; colIndex < WIDTH; colIndex++) {
       thisRow.push(null);
     }
+
     board.push(thisRow);
   }
 }
@@ -73,8 +73,12 @@ function findSpotForCol(x) {
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
-function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
+function placeInTable(rowIndex, colIndex) {
+  const thisCell = document.getElementById(`c-${rowIndex}-${colIndex}`);
+  const markerElement = document.createElement('div');
+  markerElement.classList.add('piece', `p${currPlayer}`);
+
+  thisCell.append(markerElement);
 }
 
 /** endGame: announce game end */
