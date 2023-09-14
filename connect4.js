@@ -22,7 +22,7 @@ function makeBoard() {
   // board = Array.from({length: HEIGHT}).fill(Array.from({length: WIDTH}).fill(null));
 
   for (let rowIndex = 0; rowIndex < HEIGHT; rowIndex++) {
-    const thisRow = Array.from({length: WIDTH}).fill(null);
+    const thisRow = Array.from({ length: WIDTH }).fill(null);
     /*for (let colIndex = 0; colIndex < WIDTH; colIndex++) {
       thisRow.push(null);
     }*/
@@ -105,6 +105,7 @@ function handleClick(evt) {
   // place piece in board and add to HTML table
   // TODO: add line to update in-memory board
   placeInTable(y, x);
+  board[y][x] = currPlayer;
 
   // check for win
   if (checkForWin()) {
@@ -113,9 +114,12 @@ function handleClick(evt) {
 
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
+  board.every(row => {
+    row.every(cell => cell);
+  });
 
   // switch players
-  // TODO: switch currPlayer 1 <-> 2
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
